@@ -326,6 +326,160 @@ The image generation should use gpt-image-1 as the model.
 Task 8 is not needed anymore. You can remove it.
 ```
 
+## 💡 Pro Tips for Advanced TaskMaster AI Usage
+
+### 1. Provide Additional Context for Each Task
+
+When prompting the AI to work on tasks, always provide extra context to guide implementation:
+
+```
+Implement task 2 and all of its subtasks.
+
+Additional context:
+- Use Shadcn UI components for all form elements
+- Follow the Material Design color palette from our design system
+- Ensure all buttons have hover states and loading indicators
+- API documentation is available at @api-docs.md
+- Reference the design mockups I'm attaching: [attach image files]
+```
+
+**Benefits:**
+- Guides AI toward your preferred implementation approach
+- Ensures consistency with your design system
+- Reduces back-and-forth iterations
+- You can attach images, API docs, and other reference materials
+
+### 2. Break Down Large Files (>500 lines)
+
+AI struggles with large files. When a file grows beyond 500 lines, break it down:
+
+```
+Break down this file into logical modules so it's easier to read.
+Create directories if needed and move utils and interfaces to separate files, maintaining a domain-driven file structure.
+```
+
+**Example file structure after breakdown:**
+```
+src/
+├── components/
+│   ├── Timeline/
+│   │   ├── Timeline.tsx
+│   │   ├── TimelineItem.tsx
+│   │   ├── TimelineFilters.tsx
+│   │   └── types.ts
+│   └── shared/
+│       ├── Button/
+│       └── Modal/
+├── utils/
+│   ├── dateUtils.ts
+│   ├── apiUtils.ts
+│   └── storageUtils.ts
+└── types/
+    ├── api.ts
+    └── common.ts
+```
+
+**Benefits:**
+- Easier for AI to understand and modify code
+- Better maintainability and readability
+- Follows domain-driven design principles
+- Reduces cognitive load for both AI and developers
+
+### 3. Treat Bugs as Tasks
+
+When you encounter complex bugs that require architectural changes, create dedicated tasks:
+
+```
+The filter feature is not working as expected. Create a new task to fix it:
+- the filter should be case insensitive
+- it should work with pagination
+- it should work with the debounce
+- it should persist across page refreshes
+- it should handle special characters properly
+
+This is a bug that affects the core filtering system and may require refactoring the search logic.
+```
+
+**Why this works:**
+- Prevents AI from applying superficial fixes
+- Ensures proper analysis of the underlying issue
+- Creates a structured approach to bug resolution
+- Maintains task tracking and documentation
+- Avoids going in circles with quick fixes
+
+**Bug task template:**
+```
+Bug: [Brief description]
+Impact: [How it affects users/system]
+Root cause: [If known]
+Requirements for fix:
+- [Specific requirement 1]
+- [Specific requirement 2]
+- [Specific requirement 3]
+Acceptance criteria:
+- [ ] [Testable criteria 1]
+- [ ] [Testable criteria 2]
+```
+
+### 4. Always Start Fresh Chats for New Tasks
+
+**Important:** Start a new chat for each task implementation to avoid context pollution.
+
+**Why this matters:**
+- Too much context can confuse the AI
+- Previous task context might influence current implementation
+- Fresh context ensures focused attention on current task
+- Reduces token usage and improves response quality
+
+**Workflow:**
+1. Complete current task
+2. Test the implementation
+3. **Start new chat** ← Critical step
+4. Run `Show tasks`
+5. Get next task recommendation
+6. Implement with fresh context
+
+**Exception:** Only maintain chat context when working on closely related subtasks within the same feature.
+
+### 5. Use Task Dependencies Strategically
+
+Structure your tasks to build foundational components first:
+
+```
+Show tasks
+
+# Review dependencies and ask:
+What's the next task I should work on? Please consider dependencies and priorities.
+
+# If dependencies aren't clear:
+Can you analyze the task dependencies and suggest an optimal implementation order?
+```
+
+### 6. Leverage TaskMaster's Complexity Analysis
+
+Use complexity analysis to identify tasks that need more attention:
+
+```
+Can you analyze the complexity of our remaining tasks and identify any that should be broken down further before implementation?
+```
+
+**Follow up with:**
+```
+For any tasks with complexity > 7, please break them down into smaller, more manageable subtasks.
+```
+
+### 7. Document Implementation Decisions
+
+After completing complex tasks, document key decisions:
+
+```
+After implementing task X, please create a brief technical note documenting:
+- Key implementation decisions made
+- Any deviations from the original plan
+- Potential future improvements
+- Dependencies created for other tasks
+```
+
 ## 🔧 Available Scripts
 
 ```bash
@@ -399,6 +553,9 @@ SENTRY_DSN=your_sentry_dsn
 - **Break down complex tasks** before implementation
 - **Test frequently** during the build process
 - **Commit tasks to git** to prevent loss
+- **Start fresh chats** for each new task implementation
+- **Provide context** with each task to guide AI implementation
+- **Break down files** larger than 500 lines for better AI handling
 
 ## 🤝 Contributing
 
@@ -418,6 +575,7 @@ MIT License - see LICENSE file for details
 - Review the example HIVE project for reference
 - Use the provided templates for structured planning
 - Follow the complete workflow for best results
+- Apply the pro tips for advanced usage
 - Open issues for bugs or feature requests
 
 ---
