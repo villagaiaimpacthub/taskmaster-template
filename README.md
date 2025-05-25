@@ -12,6 +12,7 @@ A comprehensive project template for AI-powered project management and task gene
 - **Vite** for fast development and building
 - **Zustand** for state management
 - **Sentry** integration for error tracking
+- **Requirements & PRD Templates** for structured project planning
 
 ## 📋 Prerequisites
 
@@ -93,44 +94,96 @@ npm run server:dev  # Backend on http://localhost:3001
 ```
 your-project/
 ├── .cursor/
-│   └── mcp.json              # TaskMaster AI configuration
+│   └── mcp.json                    # TaskMaster AI configuration
 ├── backend/
 │   └── src/
-│       └── simple-server.ts  # Express server
+│       └── simple-server.ts        # Express server
 ├── src/
-│   ├── components/           # React components
-│   ├── lib/                  # Utility libraries
-│   ├── store/                # Zustand stores
-│   ├── utils/                # Helper functions
-│   ├── App.tsx               # Main App component
-│   ├── main.tsx              # React entry point
-│   └── index.css             # TailwindCSS styles
-├── scripts/                  # Project scripts and PRDs
-├── tasks/                    # Generated task files
-├── .taskmasterconfig         # TaskMaster configuration
-├── package.json              # Dependencies and scripts
-└── README.md                 # This file
+│   ├── components/                 # React components
+│   ├── lib/                        # Utility libraries
+│   ├── store/                      # Zustand stores
+│   ├── utils/                      # Helper functions
+│   ├── App.tsx                     # Main App component
+│   ├── main.tsx                    # React entry point
+│   └── index.css                   # TailwindCSS styles
+├── scripts/                        # Project scripts and PRDs
+│   ├── your-requirements.md        # Requirements template
+│   └── your-prd-template.md        # PRD template
+├── tasks/                          # Generated task files
+├── .taskmasterconfig               # TaskMaster configuration
+├── package.json                    # Dependencies and scripts
+└── README.md                       # This file
 ```
+
+## 📝 Project Planning Workflow
+
+### Step 1: Requirements Gathering
+
+1. **Copy the requirements template:**
+   ```bash
+   cp scripts/your-requirements.md scripts/my-project-requirements.md
+   ```
+
+2. **Fill out your specific requirements:**
+   - Replace all `[bracketed placeholders]` with your project details
+   - Remove sections that don't apply
+   - Add project-specific sections as needed
+
+3. **Review with stakeholders** and get initial approval
+
+### Step 2: Create Detailed PRD
+
+1. **Copy the PRD template:**
+   ```bash
+   cp scripts/your-prd-template.md scripts/my-project-prd.md
+   ```
+
+2. **Convert requirements into detailed specifications:**
+   - Use your requirements document as the foundation
+   - Fill in technical architecture details
+   - Define user stories and acceptance criteria
+   - Specify implementation phases
+
+3. **Get stakeholder sign-offs** on the completed PRD
+
+### Step 3: Generate Tasks with TaskMaster AI
+
+1. **Use TaskMaster AI** to parse your completed PRD
+2. **Generate comprehensive task breakdown** with subtasks
+3. **Create development workflows** and phase planning
+4. **Analyze task complexity** and dependencies
+
+### Step 4: Begin Development
+
+1. **Start with the generated tasks** from TaskMaster AI
+2. **Use the template codebase** as your foundation
+3. **Track progress** using the built-in task management API
 
 ## 🤖 Using TaskMaster AI
 
-### 1. Create Your PRD
+### 1. Create Your Requirements Document
 
-Place your Project Requirements Document (PRD) in the `scripts/` directory:
+Start with the provided template in `scripts/your-requirements.md`:
+- Fill in all project-specific details
+- Define functional and technical requirements
+- Specify constraints and success criteria
 
-```bash
-# Example: scripts/my-project-prd.md
-```
+### 2. Develop Your PRD
 
-### 2. Generate Tasks
+Use the template in `scripts/your-prd-template.md`:
+- Convert requirements into detailed specifications
+- Define technical architecture and implementation plan
+- Create comprehensive feature specifications
+
+### 3. Generate Tasks
 
 Use TaskMaster AI in Cursor to:
-- Parse your PRD
-- Generate comprehensive task lists
-- Create development workflows
-- Analyze task complexity
+- Parse your completed PRD
+- Generate comprehensive task lists with subtasks
+- Create development workflows and phase planning
+- Analyze task complexity and dependencies
 
-### 3. Track Progress
+### 4. Track Progress
 
 The backend API provides endpoints to track task progress:
 - `GET /api/v1/tasks` - Get all tasks with progress
@@ -193,6 +246,33 @@ SENTRY_DSN=your_sentry_dsn
 - **Styling**: TailwindCSS with custom design system
 - **Tools**: ESLint, Prettier, Nodemon, Concurrently
 
+## 🔄 Recommended Workflow
+
+1. **Start with Requirements** (`your-requirements.md`)
+   - Define what you want to build
+   - Gather all functional and technical requirements
+   - Get stakeholder alignment
+
+2. **Create Detailed PRD** (`your-prd-template.md`)
+   - Convert requirements into specifications
+   - Define technical architecture
+   - Plan implementation phases
+
+3. **Generate Tasks with TaskMaster AI**
+   - Parse your PRD with TaskMaster AI
+   - Generate comprehensive task breakdown
+   - Create development workflows
+
+4. **Begin Development**
+   - Use this template as your codebase foundation
+   - Follow the generated task sequence
+   - Track progress with the built-in API
+
+5. **Iterate and Improve**
+   - Update requirements and PRD as needed
+   - Re-generate tasks for new features
+   - Maintain documentation throughout development
+
 ## 🤝 Contributing
 
 1. Fork the template
@@ -209,6 +289,7 @@ MIT License - see LICENSE file for details
 
 - Check the TaskMaster AI documentation
 - Review the example HIVE project for reference
+- Use the provided templates for structured planning
 - Open issues for bugs or feature requests
 
 ---
