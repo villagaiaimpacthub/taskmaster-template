@@ -4,8 +4,8 @@ A comprehensive project template for AI-powered project management and task gene
 
 ## 🚀 Features
 
-- **React 19** with TypeScript for modern frontend development
-- **TailwindCSS v4** for utility-first styling
+- **React 18** with TypeScript for modern frontend development
+- **TailwindCSS v3** for utility-first styling
 - **Express.js** backend with TypeScript
 - **TaskMaster AI** integration for intelligent task generation
 - **ESLint & Prettier** for code quality
@@ -186,7 +186,7 @@ SENTRY_DSN=your_sentry_dsn
 
 ## 📚 Tech Stack
 
-- **Frontend**: React 19, TypeScript, TailwindCSS v4, Vite
+- **Frontend**: React 18, TypeScript, TailwindCSS v3, Vite
 - **Backend**: Express.js, TypeScript, CORS, Helmet
 - **AI**: TaskMaster AI via OpenRouter
 - **State**: Zustand
