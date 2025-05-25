@@ -1,0 +1,33 @@
+{
+  "project": {
+    "name": "New TaskMaster Project",
+    "description": "AI-powered project management and task generation",
+    "version": "1.0.0"
+  },
+  "ai": {
+    "model": "openai/gpt-4o-mini",
+    "provider": "openrouter",
+    "temperature": 0.7,
+    "maxTokens": 4000
+  },
+  "tasks": {
+    "outputDir": "./tasks",
+    "format": "json",
+    "includeSubtasks": true,
+    "complexityAnalysis": true,
+    "dependencyTracking": true
+  },
+  "workflow": {
+    "phases": 7,
+    "toolAllocation": {
+      "cursor": 0.7,
+      "n8n": 0.3
+    },
+    "priorityLevels": ["low", "medium", "high", "critical"]
+  },
+  "integration": {
+    "github": true,
+    "documentation": true,
+    "progressTracking": true
+  }
+} 
