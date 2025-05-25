@@ -2,67 +2,109 @@
 
 ## Project Overview
 
-**Project Name:** [Your Project Name]  
+**App Name:** [Your App Name]  
 **Project Type:** [Web Application / Mobile App / Desktop App / API / etc.]  
 **Target Platform:** [Web Browser / iOS / Android / Desktop / etc.]  
-**Primary Technology Stack:** [React, Next.js, etc.]
 
-## Project Description
+## Tech Stack
 
-[Provide a brief description of what the application does and its main purpose. Include any inspiration or similar applications that serve as reference points.]
+**Frontend Framework:** [React, Next.js, Vue, Angular, etc.]  
+**Styling:** [TailwindCSS, CSS Modules, Styled Components, etc.]  
+**State Management:** [Redux, Zustand, Context API, etc.]  
+**UI Components:** [Shadcn/UI, Material-UI, Chakra UI, etc.]  
+**Backend (if applicable):** [Node.js/Express, Python/FastAPI, etc.]  
+**Database:** [PostgreSQL, MongoDB, Supabase, Firebase, etc.]  
+**Build Tool:** [Vite, Webpack, Next.js, etc.]  
+**Testing:** [Jest, Cypress, Playwright, etc.]  
+**Deployment:** [Vercel, Netlify, AWS, etc.]
 
-## Core Requirements
+## Research Request
 
-### Functional Requirements
+**Comparable App:** [Name of existing app to research for inspiration]  
+**Research Instructions:** Please research [comparable app name] to get a better understanding of the app we want to build. Analyze their features, user interface, and user experience patterns.
 
-#### Primary Features
-- [Feature 1: Description of core functionality]
-- [Feature 2: Description of core functionality]
-- [Feature 3: Description of core functionality]
+## Core Features
 
-#### User Interface Requirements
+### Primary Features (Must-Have)
+- [Feature 1: Detailed description of core functionality]
+- [Feature 2: Detailed description of core functionality]
+- [Feature 3: Detailed description of core functionality]
+
+### Secondary Features (Nice-to-Have)
+- [Feature 1: Additional functionality for future phases]
+- [Feature 2: Additional functionality for future phases]
+
+### User Interface Requirements
 - [UI Requirement 1: Layout and design specifications]
-- [UI Requirement 2: Responsive design requirements]
+- [UI Requirement 2: Responsive design requirements (mobile, tablet, desktop)]
 - [UI Requirement 3: Navigation and user flow]
+- [UI Requirement 4: Accessibility requirements]
 
-#### Data Management
-- [Data Requirement 1: Storage and persistence needs]
-- [Data Requirement 2: Data synchronization requirements]
-- [Data Requirement 3: Data export/import capabilities]
+## Database Requirements
 
-#### Integration Requirements
-- [Integration 1: External APIs or services]
-- [Integration 2: Third-party tools or platforms]
-- [Integration 3: Authentication and authorization]
+### Data Models
+- **[Entity 1]**: [Description and key attributes]
+- **[Entity 2]**: [Description and key attributes]
+- **[Entity 3]**: [Description and key attributes]
 
-### Technical Requirements
+### Storage Strategy
+- [Storage Type 1: Local storage, session storage, etc.]
+- [Storage Type 2: Database requirements and schema]
+- [Storage Type 3: File storage needs (images, documents, etc.)]
 
-#### Performance
-- [Performance Requirement 1: Load times, response times]
-- [Performance Requirement 2: Scalability needs]
-- [Performance Requirement 3: Optimization requirements]
+### Data Relationships
+- [Relationship 1: How entities connect]
+- [Relationship 2: Foreign keys and references]
 
-#### Security
-- [Security Requirement 1: Data protection]
-- [Security Requirement 2: User authentication]
-- [Security Requirement 3: API security]
+## API Integrations
 
-#### Compatibility
-- [Compatibility Requirement 1: Browser support]
-- [Compatibility Requirement 2: Device compatibility]
-- [Compatibility Requirement 3: Operating system support]
+### External APIs
+- **[API Name 1]**: [Purpose, endpoints, authentication method]
+- **[API Name 2]**: [Purpose, endpoints, authentication method]
+- **[API Name 3]**: [Purpose, endpoints, authentication method]
 
-### User Experience Requirements
+### Internal APIs (if building backend)
+- **[Endpoint 1]**: [Method, purpose, request/response format]
+- **[Endpoint 2]**: [Method, purpose, request/response format]
 
-#### Accessibility
-- [Accessibility Requirement 1: WCAG compliance level]
-- [Accessibility Requirement 2: Keyboard navigation]
-- [Accessibility Requirement 3: Screen reader support]
+### Authentication & Security
+- [Authentication method: API keys, OAuth, JWT, etc.]
+- [Security requirements: HTTPS, rate limiting, etc.]
 
-#### Usability
-- [Usability Requirement 1: Intuitive navigation]
-- [Usability Requirement 2: Error handling and feedback]
-- [Usability Requirement 3: Help and documentation]
+## Design Style
+
+### Visual Design
+- **Design System:** [Material Design, Apple HIG, custom, etc.]
+- **Color Palette:** [Primary colors, accent colors, neutral colors]
+- **Typography:** [Font families, sizes, weights]
+- **Spacing:** [Consistent spacing system]
+- **Border Radius:** [Rounded corners style]
+
+### UI/UX Principles
+- [Design principle 1: Minimalist, modern, playful, etc.]
+- [Design principle 2: User-centered, accessible, etc.]
+- [Design principle 3: Consistent, intuitive, etc.]
+
+### Responsive Design
+- **Mobile (< 640px):** [Specific layout and interaction requirements]
+- **Tablet (640px - 1024px):** [Specific layout and interaction requirements]
+- **Desktop (> 1024px):** [Specific layout and interaction requirements]
+
+## Things NOT to Build
+
+### Explicitly Excluded Features
+- [Feature 1: What you don't want to include and why]
+- [Feature 2: What you don't want to include and why]
+- [Feature 3: What you don't want to include and why]
+
+### Scope Limitations
+- [Limitation 1: Complexity boundaries]
+- [Limitation 2: Platform limitations]
+- [Limitation 3: Integration limitations]
+
+### Future Considerations
+- [Item 1: Features to consider for later phases]
+- [Item 2: Features to consider for later phases]
 
 ## Detailed Feature Specifications
 
@@ -108,65 +150,41 @@
 - [Preference 2: User customizable options]
 - [Preference 3: User customizable options]
 
-## Data Models and Storage
-
-### Data Entities
-- **[Entity Name]**: [Description and key attributes]
-- **[Entity Name]**: [Description and key attributes]
-- **[Entity Name]**: [Description and key attributes]
-
-### Storage Requirements
-- [Storage Type 1: Local storage, session storage, etc.]
-- [Storage Type 2: Database requirements]
-- [Storage Type 3: File storage needs]
-
-## API and Integration Specifications
-
-### External APIs
-- **[API Name]**: [Purpose, endpoints, authentication method]
-- **[API Name]**: [Purpose, endpoints, authentication method]
-
-### Internal APIs
-- **[Endpoint 1]**: [Method, purpose, request/response format]
-- **[Endpoint 2]**: [Method, purpose, request/response format]
-
 ## Non-Functional Requirements
 
-### Performance Metrics
-- Page load time: [Target time]
-- API response time: [Target time]
+### Performance Requirements
+- Page load time: [Target time, e.g., < 2 seconds]
+- API response time: [Target time, e.g., < 500ms]
 - Concurrent users: [Target number]
+- Image/file optimization: [Compression, lazy loading, etc.]
 
-### Scalability
-- [Scalability requirement 1]
-- [Scalability requirement 2]
-
-### Reliability
-- Uptime requirement: [Percentage]
-- Error rate: [Maximum acceptable rate]
-
-### Security
+### Security Requirements
 - Data encryption: [Requirements]
 - Authentication: [Method and requirements]
 - Authorization: [Role-based access control]
+- API security: [Rate limiting, input validation, etc.]
 
-## Technology Stack
+### Compatibility Requirements
+- Browser support: [Chrome, Firefox, Safari, Edge versions]
+- Device compatibility: [Mobile, tablet, desktop requirements]
+- Operating system support: [iOS, Android, Windows, macOS, Linux]
 
-### Frontend
-- **Framework:** [React, Vue, Angular, etc.]
-- **Styling:** [TailwindCSS, CSS Modules, etc.]
-- **State Management:** [Redux, Zustand, Context API, etc.]
-- **UI Components:** [Shadcn/UI, Material-UI, etc.]
+### Accessibility Requirements
+- WCAG compliance level: [AA, AAA]
+- Keyboard navigation: [Full keyboard accessibility]
+- Screen reader support: [ARIA labels, semantic HTML]
 
-### Backend (if applicable)
-- **Runtime:** [Node.js, Python, etc.]
-- **Framework:** [Express, FastAPI, etc.]
-- **Database:** [PostgreSQL, MongoDB, etc.]
+## Success Criteria
 
-### Development Tools
-- **Build Tool:** [Vite, Webpack, etc.]
-- **Testing:** [Jest, Cypress, etc.]
-- **Linting:** [ESLint, Prettier, etc.]
+### Minimum Viable Product (MVP)
+- [ ] [Core feature 1 implemented and tested]
+- [ ] [Core feature 2 implemented and tested]
+- [ ] [Core feature 3 implemented and tested]
+
+### Success Metrics
+- [Metric 1: User engagement, performance, etc.]
+- [Metric 2: Business goals, conversion rates, etc.]
+- [Metric 3: Technical metrics, error rates, etc.]
 
 ## Constraints and Assumptions
 
@@ -185,18 +203,6 @@
 - [Assumption 2: Technical assumptions]
 - [Assumption 3: Business assumptions]
 
-## Success Criteria
-
-### Minimum Viable Product (MVP)
-- [ ] [Core feature 1 implemented]
-- [ ] [Core feature 2 implemented]
-- [ ] [Core feature 3 implemented]
-
-### Success Metrics
-- [Metric 1: User engagement, performance, etc.]
-- [Metric 2: Business goals, conversion rates, etc.]
-- [Metric 3: Technical metrics, error rates, etc.]
-
 ## Future Enhancements
 
 ### Phase 2 Features
@@ -211,23 +217,66 @@
 
 ---
 
+## Example Requirements (ImgxAI)
+
+Here's a complete example of how to fill out this template:
+
+**App Name:** ImgxAI  
+**Project Type:** Web Application  
+**Target Platform:** Web Browser  
+
+**Tech Stack:** Next.js 15, TailwindCSS, Lucide Icons, React Hook Form with Zod, Shadcn UI
+
+**Research Request:** Please research Midjourney to get a better understanding of the app we want to build.
+
+**Core Features:**
+- Integrate with OpenAI APIs using gpt-image-1 model
+- Unified interface with chat input and timeline of results
+- Scrollable timeline with infinite loading and pagination
+- Responsive grid: 1 column (mobile), 2 columns (tablet), 4 columns (desktop)
+- Minimal filters: date, status, aspect ratio, order by newest/oldest
+- Click to download images
+- Details view showing all images, jobId, created, status, dimensions, model, quality
+- Re-run prompts functionality
+- Background job processing
+
+**Database:** Browser storage (IndexedDB) for images and metadata
+
+**API Integrations:** OpenAI Images API with gpt-image-1 model
+
+**Design Style:** Minimalist, clean interface focusing on generated images
+
+**Things NOT to Build:**
+- User accounts or authentication
+- Server-side storage
+- Payment processing
+- Advanced image editing tools
+
+---
+
 ## Instructions for Use
 
 1. **Copy this template** for your new project
-2. **Replace all bracketed placeholders** with your specific requirements
-3. **Remove sections** that don't apply to your project
-4. **Add additional sections** as needed for your specific domain
-5. **Review and refine** requirements with stakeholders
-6. **Use TaskMaster AI** to convert this into a detailed PRD and task breakdown
+2. **Fill in the App Name** and basic project information
+3. **Specify your Tech Stack** with exact versions where important
+4. **Add Research Request** for any comparable apps to analyze
+5. **List Core Features** in detail with specific requirements
+6. **Define Database** needs and data models
+7. **Specify API Integrations** with authentication details
+8. **Describe Design Style** and visual requirements
+9. **Explicitly state what NOT to build** to avoid scope creep
+10. **Review and refine** requirements with stakeholders
+11. **Use this output** to create a detailed PRD with AI assistance
 
 ## Next Steps
 
 After completing this requirements document:
 
-1. Review with stakeholders and get approval
-2. Use TaskMaster AI to generate a comprehensive PRD
-3. Create detailed task breakdown and development workflow
-4. Begin implementation using the TaskMaster template
+1. **Review with stakeholders** and get approval
+2. **Use AI (ChatGPT o3 or Claude)** to convert into functional requirements
+3. **Create comprehensive PRD** using the PRD template
+4. **Use TaskMaster AI** to generate detailed task breakdown
+5. **Begin implementation** using the TaskMaster template
 
 ---
 

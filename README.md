@@ -19,6 +19,8 @@ A comprehensive project template for AI-powered project management and task gene
 - Node.js 18+ 
 - npm or yarn
 - OpenRouter API key for TaskMaster AI
+- Anthropic API key (for TaskMaster AI)
+- Perplexity API key (for complexity analysis)
 
 ## 🛠️ Quick Start
 
@@ -48,16 +50,23 @@ cp env.template .env
 
 ### 4. Configure TaskMaster AI
 
-Edit `.cursor/mcp.json` and add your OpenRouter API key:
+Edit `.cursor/mcp.json` and add your API keys:
 
 ```json
 {
   "mcpServers": {
     "taskmaster-ai": {
       "command": "npx",
-      "args": ["taskmaster-ai"],
+      "args": ["-y", "--package=task-master-ai", "task-master-ai"],
       "env": {
-        "OPENROUTER_API_KEY": "your_actual_api_key_here"
+        "ANTHROPIC_API_KEY": "your_anthropic_api_key",
+        "PERPLEXITY_API_KEY": "your_perplexity_api_key",
+        "MODEL": "claude-3-7-sonnet-20250219",
+        "PERPLEXITY_MODEL": "sonar-pro",
+        "MAX_TOKENS": 64000,
+        "TEMPERATURE": 0.2,
+        "DEFAULT_SUBTASKS": 5,
+        "DEFAULT_PRIORITY": "medium"
       }
     }
   }
@@ -115,80 +124,207 @@ your-project/
 └── README.md                       # This file
 ```
 
-## 📝 Project Planning Workflow
+## 📝 Complete Project Planning & Development Workflow
 
-### Step 1: Requirements Gathering
+### Step 1: Writing Requirements (10-15 minutes)
 
 1. **Copy the requirements template:**
    ```bash
    cp scripts/your-requirements.md scripts/my-project-requirements.md
    ```
 
-2. **Fill out your specific requirements:**
-   - Replace all `[bracketed placeholders]` with your project details
-   - Remove sections that don't apply
-   - Add project-specific sections as needed
+2. **Fill out your specific requirements** including:
+   - **App name** - What you're calling your application
+   - **Tech stack** - Specific frameworks, libraries, and tools
+   - **Core features** - Detailed functionality descriptions
+   - **Database** - Data models and storage requirements
+   - **API integrations** - External services and authentication
+   - **Design style** - Visual design and UX principles
+   - **Things NOT to build** - Explicit scope limitations
+   - **Research request** - Ask AI to research comparable apps
 
-3. **Review with stakeholders** and get initial approval
+3. **Example requirements prompt for AI:**
+   ```
+   I would like to create concise functional requirements for the following application:
 
-### Step 2: Create Detailed PRD
+   The app is called ImgxAI and is a midjourney clone, but using OpenAI's image model.
+   Research midjourney to get a better understanding of the app.
+
+   My Requirements:
+   - It should integrate with the OpenAI APIs. The image model used is gpt-image-1
+   - The app should have a unified interface with a chat input and a timeline of results
+   - The timeline should be scrollable and have infinite loading with pagination
+   - The timeline should be responsive, a grid of 1 on mobile, 2 on tablet and 4 on desktop
+   [... continue with all your requirements]
+
+   Output as markdown code.
+   ```
+
+4. **Use ChatGPT o3 or Claude** to convert your requirements into structured functional requirements
+
+### Step 2: Creating a PRD File
 
 1. **Copy the PRD template:**
    ```bash
    cp scripts/your-prd-template.md scripts/my-project-prd.md
    ```
 
-2. **Convert requirements into detailed specifications:**
-   - Use your requirements document as the foundation
-   - Fill in technical architecture details
-   - Define user stories and acceptance criteria
-   - Specify implementation phases
+2. **Use this prompt with Claude 3.7 Sonnet** to create a comprehensive PRD:
 
-3. **Get stakeholder sign-offs** on the completed PRD
+   ```
+   You are an expert technical product manager specializing in feature development and creating comprehensive product requirements documents (PRDs). Your task is to generate a detailed and well-structured PRD based on the following instructions:
 
-### Step 3: Generate Tasks with TaskMaster AI
+   <prd_instructions>
+   [PASTE YOUR FUNCTIONAL REQUIREMENTS FROM STEP 1 HERE]
+   </prd_instructions>
 
-1. **Use TaskMaster AI** to parse your completed PRD
-2. **Generate comprehensive task breakdown** with subtasks
-3. **Create development workflows** and phase planning
-4. **Analyze task complexity** and dependencies
+   Follow these steps to create the PRD:
 
-### Step 4: Begin Development
+   1. Begin with a brief overview explaining the project and the purpose of the document.
 
-1. **Start with the generated tasks** from TaskMaster AI
-2. **Use the template codebase** as your foundation
-3. **Track progress** using the built-in task management API
+   2. Use sentence case for all headings except for the title of the document, which should be in title case.
 
-## 🤖 Using TaskMaster AI
+   3. Organize your PRD into the following sections:
+      a. Introduction
+      b. Product Overview
+      c. Goals and Objectives
+      d. Target Audience
+      e. Features and Requirements
+      f. User Stories and Acceptance Criteria
+      g. Technical Requirements / Stack
+      h. Design and User Interface
 
-### 1. Create Your Requirements Document
+   4. For each section, provide detailed and relevant information based on the PRD instructions. Ensure that you:
+      - Use clear and concise language
+      - Provide specific details and metrics where required
+      - Maintain consistency throughout the document
+      - Address all points mentioned in each section
 
-Start with the provided template in `scripts/your-requirements.md`:
-- Fill in all project-specific details
-- Define functional and technical requirements
-- Specify constraints and success criteria
+   5. When creating user stories and acceptance criteria:
+      - List ALL necessary user stories including primary, alternative, and edge-case scenarios
+      - Assign a unique requirement ID (e.g., ST-101) to each user story for direct traceability
+      - Include at least one user story specifically for secure access or authentication if the application requires user identification
+      - Include at least one user story specifically for Database modelling if the application requires a database
+      - Ensure no potential user interaction is omitted
+      - Make sure each user story is testable
 
-### 2. Develop Your PRD
+   6. Format your PRD professionally:
+      - Use consistent styles
+      - Include numbered sections and subsections
+      - Use bullet points and tables where appropriate to improve readability
+      - Ensure proper spacing and alignment throughout the document
 
-Use the template in `scripts/your-prd-template.md`:
-- Convert requirements into detailed specifications
-- Define technical architecture and implementation plan
-- Create comprehensive feature specifications
+   7. Review your PRD to ensure all aspects of the project are covered comprehensively and that there are no contradictions or ambiguities.
 
-### 3. Generate Tasks
+   Present your final PRD within <PRD> tags. Begin with the title of the document in title case, followed by each section with its corresponding content. Use appropriate subheadings within each section as needed.
 
-Use TaskMaster AI in Cursor to:
-- Parse your completed PRD
-- Generate comprehensive task lists with subtasks
-- Create development workflows and phase planning
-- Analyze task complexity and dependencies
+   Remember to tailor the content to the specific project described in the PRD instructions, providing detailed and relevant information for each section based on the given context.
+   ```
 
-### 4. Track Progress
+3. **Review the output** and ensure it covers everything you want to build
 
-The backend API provides endpoints to track task progress:
-- `GET /api/v1/tasks` - Get all tasks with progress
-- `GET /health` - Health check
-- `GET /api/v1/test` - API test
+### Step 3: Setting up TaskMaster AI via MCP
+
+1. **Configure MCP Server** in Cursor (Settings > MCP > Add new global MCP server):
+   ```json
+   {
+     "mcpServers": {
+       "taskmaster-ai": {
+         "command": "npx",
+         "args": ["-y", "--package=task-master-ai", "task-master-ai"],
+         "env": {
+           "ANTHROPIC_API_KEY": "your_anthropic_api_key",
+           "PERPLEXITY_API_KEY": "your_perplexity_api_key",
+           "MODEL": "claude-3-7-sonnet-20250219",
+           "PERPLEXITY_MODEL": "sonar-pro",
+           "MAX_TOKENS": 64000,
+           "TEMPERATURE": 0.2,
+           "DEFAULT_SUBTASKS": 5,
+           "DEFAULT_PRIORITY": "medium"
+         }
+       }
+     }
+   }
+   ```
+
+2. **Set up Cursor Rules** (optional but recommended):
+   - Use `/Generate Cursor Rules` in Cursor Chat
+   - Analyze your existing files with `@MyFile.tsx`
+   - Prompt: "I want to generate cursor rules for writing UI components. Please analyze the file and outline all the conventions found."
+
+3. **Initialize TaskMaster AI:**
+   - Save your PRD as `scripts/prd.txt`
+   - In Cursor Chat (Agent mode + Claude 3.7 Sonnet):
+   ```
+   I've initialized a new project with Claude Task Master. I have a PRD at scripts/prd.txt.
+   Can you parse it and set up initial tasks?
+   ```
+
+4. **Analyze Complexity:**
+   ```
+   Can you analyze the complexity of our tasks to help me understand which ones need to be broken down further?
+   ```
+
+5. **Break down complex tasks:**
+   ```
+   Please break down the identified tasks into subtasks.
+   ```
+
+   Or for specific tasks:
+   ```
+   Task 3 seems complex. Can you break it down into subtasks?
+   ```
+
+### Step 4: Building the App (Prompt Loop)
+
+1. **Show current tasks:**
+   ```
+   Show tasks
+   ```
+
+2. **Get next task recommendation:**
+   ```
+   What's the next task I should work on? Please consider dependencies and priorities.
+   ```
+
+3. **Implement tasks:**
+   ```
+   Implement task 2 and all of its subtasks.
+   ```
+
+   Or for individual subtasks:
+   ```
+   Implement subtask 2.1
+   ```
+
+4. **Iterate:**
+   - Test the implemented features
+   - Start a new chat
+   - Repeat steps 1-3 until all tasks are complete
+
+### Additional TaskMaster AI Commands
+
+**Add new tasks:**
+```
+Let's add a new task. We should implement sorting of the timeline.
+Here are the requirements:
+- you should be able to sort the timeline by date
+- a dropdown should be available to select the sorting direction
+- the sorting should be persisted when a new page is loaded
+```
+
+**Change task direction:**
+```
+There should be a change in the image generation task.
+Can you update task 3 with this and set it back to pending?
+
+The image generation should use gpt-image-1 as the model.
+```
+
+**Remove tasks:**
+```
+Task 8 is not needed anymore. You can remove it.
+```
 
 ## 🔧 Available Scripts
 
@@ -227,8 +363,9 @@ npm run type-check   # TypeScript type checking
 Copy `env.template` to `.env` and configure:
 
 ```bash
-# Required
-OPENROUTER_API_KEY=your_openrouter_api_key
+# Required for TaskMaster AI
+ANTHROPIC_API_KEY=your_anthropic_api_key
+PERPLEXITY_API_KEY=your_perplexity_api_key
 
 # Optional
 PROJECT_NAME=Your Project Name
@@ -241,37 +378,27 @@ SENTRY_DSN=your_sentry_dsn
 
 - **Frontend**: React 18, TypeScript, TailwindCSS v3, Vite
 - **Backend**: Express.js, TypeScript, CORS, Helmet
-- **AI**: TaskMaster AI via OpenRouter
+- **AI**: TaskMaster AI via MCP
 - **State**: Zustand
 - **Styling**: TailwindCSS with custom design system
 - **Tools**: ESLint, Prettier, Nodemon, Concurrently
 
-## 🔄 Recommended Workflow
+## 🔄 Recommended Workflow Summary
 
-1. **Start with Requirements** (`your-requirements.md`)
-   - Define what you want to build
-   - Gather all functional and technical requirements
-   - Get stakeholder alignment
+1. **Requirements (10-15 min)** - Fill out `your-requirements.md` template
+2. **Functional Requirements** - Use AI to convert to structured requirements
+3. **PRD Creation** - Use AI to create comprehensive PRD
+4. **TaskMaster Setup** - Configure MCP and initialize tasks
+5. **Complexity Analysis** - Break down complex tasks
+6. **Implementation Loop** - Build iteratively with AI assistance
 
-2. **Create Detailed PRD** (`your-prd-template.md`)
-   - Convert requirements into specifications
-   - Define technical architecture
-   - Plan implementation phases
+## ⚠️ Important Notes
 
-3. **Generate Tasks with TaskMaster AI**
-   - Parse your PRD with TaskMaster AI
-   - Generate comprehensive task breakdown
-   - Create development workflows
-
-4. **Begin Development**
-   - Use this template as your codebase foundation
-   - Follow the generated task sequence
-   - Track progress with the built-in API
-
-5. **Iterate and Improve**
-   - Update requirements and PRD as needed
-   - Re-generate tasks for new features
-   - Maintain documentation throughout development
+- **Never start from empty codebase** - Always use a template or CLI
+- **Use Agent mode** in Cursor with Claude 3.7 Sonnet
+- **Break down complex tasks** before implementation
+- **Test frequently** during the build process
+- **Commit tasks to git** to prevent loss
 
 ## 🤝 Contributing
 
@@ -290,6 +417,7 @@ MIT License - see LICENSE file for details
 - Check the TaskMaster AI documentation
 - Review the example HIVE project for reference
 - Use the provided templates for structured planning
+- Follow the complete workflow for best results
 - Open issues for bugs or feature requests
 
 ---
