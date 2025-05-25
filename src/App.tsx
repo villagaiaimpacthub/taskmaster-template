@@ -1,5 +1,3 @@
-import React from 'react';
-
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -23,7 +21,7 @@ function App() {
             <div className="space-y-2 text-left">
               <div className="flex items-center text-green-400">
                 <span className="mr-2">✓</span>
-                React 19 + TypeScript
+                React 18 + TypeScript
               </div>
               <div className="flex items-center text-green-400">
                 <span className="mr-2">✓</span>

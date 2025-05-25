@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ 
     status: 'OK', 
     timestamp: new Date().toISOString(),
@@ -33,7 +33,7 @@ app.get('/health', (req, res) => {
 });
 
 // Test endpoint
-app.get('/api/v1/test', (req, res) => {
+app.get('/api/v1/test', (_req, res) => {
   res.json({ 
     message: 'TaskMaster API is working!',
     timestamp: new Date().toISOString()
@@ -41,7 +41,7 @@ app.get('/api/v1/test', (req, res) => {
 });
 
 // Tasks endpoint
-app.get('/api/v1/tasks', (req, res) => {
+app.get('/api/v1/tasks', (_req, res) => {
   try {
     const tasksPath = join(__dirname, '../../tasks/tasks.json');
     console.log('Looking for tasks at:', tasksPath);
@@ -81,7 +81,7 @@ app.use('*', (req, res) => {
 });
 
 // Error handler
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('Error:', err);
   res.status(500).json({ 
     error: 'Internal Server Error',
