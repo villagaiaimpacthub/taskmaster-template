@@ -2,6 +2,10 @@
 
 A comprehensive project template for AI-powered project management and task generation using TaskMaster AI.
 
+**Based on the methodology from:**
+- [Shipixen Tutorial: How to Reduce AI Coding Errors with TaskMaster AI](https://shipixen.com/tutorials/reduce-ai-coding-errors-with-taskmaster-ai)
+- [TaskMaster AI Package](https://www.npmjs.com/package/task-master-ai)
+
 ## 🚀 Features
 
 - **React 18** with TypeScript for modern frontend development
@@ -61,7 +65,7 @@ Edit `.cursor/mcp.json` and add your API keys:
       "env": {
         "ANTHROPIC_API_KEY": "your_anthropic_api_key",
         "PERPLEXITY_API_KEY": "your_perplexity_api_key",
-        "MODEL": "anthropic/claude-sonnet-4",
+        "MODEL": "claude-4-sonnet",
         "PERPLEXITY_MODEL": "sonar-pro",
         "MAX_TOKENS": 120000,
         "TEMPERATURE": 0.2,
@@ -82,7 +86,7 @@ Edit `.taskmasterconfig` to customize your project:
   "models": {
     "main": {
       "provider": "openrouter",
-      "modelId": "anthropic/claude-sonnet-4",
+      "modelId": "claude-4-sonnet",
       "maxTokens": 120000,
       "temperature": 0.2
     }
@@ -182,7 +186,7 @@ your-project/
    cp scripts/your-prd-template.md scripts/my-project-prd.md
    ```
 
-2. **Use this prompt with Claude 3.7 Sonnet** to create a comprehensive PRD:
+2. **Use this prompt with Claude 4 Sonnet** to create a comprehensive PRD:
 
    ```
    You are an expert technical product manager specializing in feature development and creating comprehensive product requirements documents (PRDs). Your task is to generate a detailed and well-structured PRD based on the following instructions:
@@ -248,7 +252,7 @@ your-project/
          "env": {
            "ANTHROPIC_API_KEY": "your_anthropic_api_key",
            "PERPLEXITY_API_KEY": "your_perplexity_api_key",
-           "MODEL": "anthropic/claude-sonnet-4",
+           "MODEL": "claude-4-sonnet",
            "PERPLEXITY_MODEL": "sonar-pro",
            "MAX_TOKENS": 120000,
            "TEMPERATURE": 0.2,
@@ -267,7 +271,7 @@ your-project/
 
 3. **Initialize TaskMaster AI:**
    - Save your PRD as `scripts/prd.txt`
-   - In Cursor Chat (Agent mode + Claude 3.7 Sonnet):
+   - In Cursor Chat (Agent mode + Claude 4 Sonnet):
    ```
    I've initialized a new project with Claude Task Master. I have a PRD at scripts/prd.txt.
    Can you parse it and set up initial tasks?
@@ -685,7 +689,7 @@ Add this to your MCP settings in Cursor (Settings > MCP > Add new global MCP ser
       "env": {
         "ANTHROPIC_API_KEY": "your_anthropic_api_key",
         "PERPLEXITY_API_KEY": "your_perplexity_api_key",
-        "MODEL": "claude-3-7-sonnet-20250219",
+        "MODEL": "claude-4-sonnet",
         "PERPLEXITY_MODEL": "sonar-pro",
         "MAX_TOKENS": 64000,
         "TEMPERATURE": 0.2,
@@ -699,7 +703,7 @@ Add this to your MCP settings in Cursor (Settings > MCP > Add new global MCP ser
 
 #### 3.2 Initialize TaskMaster AI
 1. Save your PRD as `scripts/prd.txt`
-2. In Cursor Chat (Agent mode + Claude 3.7 Sonnet):
+2. In Cursor Chat (Agent mode + Claude 4 Sonnet):
 
 ```
 I've initialized a new project with Claude Task Master. I have a PRD at scripts/prd.txt.
@@ -734,7 +738,7 @@ Please break down the identified tasks into subtasks.
 
 ## 🏆 Olympic-Level Vibe Coding Methodology
 
-This template implements the complete workflow from the viral blog post that revolutionized AI-assisted development. The methodology focuses on:
+This template implements the complete workflow from the [Shipixen tutorial](https://shipixen.com/tutorials/reduce-ai-coding-errors-with-taskmaster-ai) that revolutionized AI-assisted development. The methodology focuses on:
 
 1. **Detailed Requirements** (10-15 min investment upfront)
 2. **Comprehensive PRD Creation** (using proven prompts)
@@ -750,7 +754,7 @@ This template implements the complete workflow from the viral blog post that rev
 ## ⚠️ Critical Success Factors
 
 - **✅ Never start from empty codebase** - Always use a template or CLI (this template provides everything!)
-- **✅ Use Agent mode** in Cursor with Claude 3.7 Sonnet
+- **✅ Use Agent mode** in Cursor with Claude 4 Sonnet
 - **✅ Break down complex tasks** before implementation (complexity analysis helps)
 - **✅ Test frequently** during the build process
 - **✅ Commit tasks to git** to prevent loss
@@ -780,6 +784,15 @@ MIT License - see LICENSE file for details
 - Follow the complete workflow for best results
 - Apply the pro tips for advanced usage
 - Open issues for bugs or feature requests
+
+## 🙏 Credits & Acknowledgments
+
+This template is based on the revolutionary AI-assisted development methodology from:
+
+- **[Shipixen Tutorial: How to Reduce AI Coding Errors with TaskMaster AI](https://shipixen.com/tutorials/reduce-ai-coding-errors-with-taskmaster-ai)** - The comprehensive guide that introduced the Olympic-Level Vibe Coding methodology
+- **[TaskMaster AI Package](https://www.npmjs.com/package/task-master-ai)** - The powerful MCP server that makes structured AI development possible
+
+Special thanks to the Shipixen team for sharing their complete workflow, prompts, and pro tips that make this level of AI-assisted development achievable.
 
 ---
 
