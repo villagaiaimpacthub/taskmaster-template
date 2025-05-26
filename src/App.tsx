@@ -1,46 +1,250 @@
+import React, { useState, useEffect } from 'react'
+import { CheckCircle, Circle, Plus, Server, Activity } from 'lucide-react'
+
+interface Task {
+  id: string
+  title: string
+  description: string
+  status: 'todo' | 'in-progress' | 'done'
+  priority: 'low' | 'medium' | 'high'
+  progress?: number
+  subtasks?: Array<{
+    id: string
+    title: string
+    status: 'todo' | 'in-progress' | 'done'
+  }>
+}
+
+interface ApiResponse {
+  tasks: Task[]
+  totalTasks: number
+  completedTasks: number
+  totalSubtasks: number
+}
+
 function App() {
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [serverStatus, setServerStatus] = useState<'checking' | 'online' | 'offline'>('checking')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  // Check server health
+  const checkServerHealth = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/health')
+      if (response.ok) {
+        setServerStatus('online')
+        return true
+      } else {
+        setServerStatus('offline')
+        return false
+      }
+    } catch (error) {
+      setServerStatus('offline')
+      return false
+    }
+  }
+
+  // Fetch tasks from API
+  const fetchTasks = async () => {
+    setLoading(true)
+    setError(null)
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/tasks')
+      if (response.ok) {
+        const data: ApiResponse = await response.json()
+        setTasks(data.tasks)
+      } else {
+        const errorData = await response.json()
+        setError(errorData.message || 'Failed to fetch tasks')
+      }
+    } catch (error) {
+      setError('Failed to connect to server. Make sure the backend is running.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Test API endpoint
+  const testApi = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/test')
+      if (response.ok) {
+        const data = await response.json()
+        alert(`API Test Successful: ${data.message}`)
+      } else {
+        alert('API test failed')
+      }
+    } catch (error) {
+      alert('Failed to connect to API')
+    }
+  }
+
+  useEffect(() => {
+    checkServerHealth()
+  }, [])
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'high': return 'text-red-300 bg-red-900/50'
+      case 'medium': return 'text-yellow-300 bg-yellow-900/50'
+      case 'low': return 'text-green-300 bg-green-900/50'
+      default: return 'text-slate-300 bg-slate-700'
+    }
+  }
+
+  const getStatusIcon = (status: string) => {
+    return status === 'done' ? 
+      <CheckCircle className="w-5 h-5 text-green-600" /> : 
+      <Circle className="w-5 h-5 text-gray-400" />
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold text-white mb-6">
-            TaskMaster
-            <span className="text-purple-400"> AI</span>
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            AI-powered project management and task generation template.
-            Ready to build your next amazing project!
-          </p>
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              🚀 Ready to Start
-            </h2>
-            <p className="text-gray-300 mb-6">
-              This is your TaskMaster template. Customize it for your project needs.
-            </p>
-            <div className="space-y-2 text-left">
-              <div className="flex items-center text-green-400">
-                <span className="mr-2">✓</span>
-                React 18 + TypeScript
+    <div className="min-h-screen bg-slate-900">
+      {/* Header */}
+      <header className="bg-slate-800 shadow-sm border-b border-slate-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">TM</span>
               </div>
-              <div className="flex items-center text-green-400">
-                <span className="mr-2">✓</span>
-                TailwindCSS v4
+              <h1 className="text-2xl font-bold text-white">TaskMaster</h1>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              {/* Server Status */}
+              <div className="flex items-center space-x-2">
+                <Server className="w-4 h-4 text-slate-400" />
+                <span className={`text-sm font-medium ${
+                  serverStatus === 'online' ? 'text-green-400' : 
+                  serverStatus === 'offline' ? 'text-red-400' : 'text-yellow-400'
+                }`}>
+                  {serverStatus === 'checking' ? 'Checking...' : 
+                   serverStatus === 'online' ? 'Server Online' : 'Server Offline'}
+                </span>
+                <div className={`w-2 h-2 rounded-full ${
+                  serverStatus === 'online' ? 'bg-green-500' : 
+                  serverStatus === 'offline' ? 'bg-red-500' : 'bg-yellow-500'
+                }`} />
               </div>
-              <div className="flex items-center text-green-400">
-                <span className="mr-2">✓</span>
-                Express Backend
-              </div>
-              <div className="flex items-center text-green-400">
-                <span className="mr-2">✓</span>
-                TaskMaster AI Integration
-              </div>
+              
+              <button
+                onClick={testApi}
+                className="px-3 py-1 text-sm bg-blue-900 text-blue-300 rounded-md hover:bg-blue-800 transition-colors"
+              >
+                Test API
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold text-white">Project Tasks</h2>
+          <div className="flex space-x-3">
+            <button
+              onClick={fetchTasks}
+              disabled={loading || serverStatus !== 'online'}
+              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <Activity className="w-4 h-4" />
+              <span>{loading ? 'Loading...' : 'Load Tasks'}</span>
+            </button>
+            <button
+              onClick={checkServerHealth}
+              className="flex items-center space-x-2 px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors"
+            >
+              <Server className="w-4 h-4" />
+              <span>Check Server</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="mb-6 p-4 bg-red-900/50 border border-red-700 rounded-lg">
+            <p className="text-red-300">{error}</p>
+          </div>
+        )}
+
+        {/* Tasks Grid */}
+        {tasks.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {tasks.map((task) => (
+              <div key={task.id} className="bg-slate-800 rounded-lg shadow-sm border border-slate-700 p-6">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center space-x-2">
+                    {getStatusIcon(task.status)}
+                    <h3 className="font-medium text-white">{task.title}</h3>
+                  </div>
+                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(task.priority)}`}>
+                    {task.priority}
+                  </span>
+                </div>
+                
+                <p className="text-slate-300 text-sm mb-4">{task.description}</p>
+                
+                {task.progress !== undefined && (
+                  <div className="mb-4">
+                    <div className="flex justify-between text-sm text-slate-400 mb-1">
+                      <span>Progress</span>
+                      <span>{task.progress}%</span>
+                    </div>
+                    <div className="w-full bg-slate-700 rounded-full h-2">
+                      <div 
+                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${task.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
+                
+                {task.subtasks && task.subtasks.length > 0 && (
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-medium text-slate-300">Subtasks:</h4>
+                    {task.subtasks.map((subtask) => (
+                      <div key={subtask.id} className="flex items-center space-x-2 text-sm">
+                        {getStatusIcon(subtask.status)}
+                        <span className={subtask.status === 'done' ? 'line-through text-slate-500' : 'text-slate-300'}>
+                          {subtask.title}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                <div className="mt-4 pt-4 border-t border-slate-700">
+                  <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${
+                    task.status === 'done' ? 'bg-green-900/50 text-green-300' :
+                    task.status === 'in-progress' ? 'bg-blue-900/50 text-blue-300' :
+                    'bg-slate-700 text-slate-300'
+                  }`}>
+                    {task.status.replace('-', ' ')}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <div className="w-16 h-16 mx-auto mb-4 bg-slate-800 rounded-full flex items-center justify-center">
+              <Plus className="w-8 h-8 text-slate-400" />
+            </div>
+            <h3 className="text-lg font-medium text-white mb-2">No tasks found</h3>
+            <p className="text-slate-400 mb-4">
+              {serverStatus === 'offline' 
+                ? 'Server is offline. Please start the backend server first.'
+                : 'Click "Load Tasks" to fetch tasks from the server, or generate tasks using TaskMaster AI first.'
+              }
+            </p>
+          </div>
+        )}
+      </main>
     </div>
-  );
+  )
 }
 
-export default App; 
+export default App 

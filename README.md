@@ -61,9 +61,9 @@ Edit `.cursor/mcp.json` and add your API keys:
       "env": {
         "ANTHROPIC_API_KEY": "your_anthropic_api_key",
         "PERPLEXITY_API_KEY": "your_perplexity_api_key",
-        "MODEL": "claude-3-7-sonnet-20250219",
+        "MODEL": "anthropic/claude-sonnet-4",
         "PERPLEXITY_MODEL": "sonar-pro",
-        "MAX_TOKENS": 64000,
+        "MAX_TOKENS": 120000,
         "TEMPERATURE": 0.2,
         "DEFAULT_SUBTASKS": 5,
         "DEFAULT_PRIORITY": "medium"
@@ -79,10 +79,20 @@ Edit `.taskmasterconfig` to customize your project:
 
 ```json
 {
-  "project": {
-    "name": "Your Project Name",
-    "description": "Your project description",
-    "version": "1.0.0"
+  "models": {
+    "main": {
+      "provider": "openrouter",
+      "modelId": "anthropic/claude-sonnet-4",
+      "maxTokens": 120000,
+      "temperature": 0.2
+    }
+  },
+  "global": {
+    "logLevel": "info",
+    "debug": false,
+    "defaultSubtasks": 5,
+    "defaultPriority": "medium",
+    "projectName": "Your Project Name"
   }
 }
 ```
@@ -90,6 +100,9 @@ Edit `.taskmasterconfig` to customize your project:
 ### 6. Start Development
 
 ```bash
+# Make sure you're in the TaskMaster-Template directory
+cd TaskMaster-Template
+
 # Start both frontend and backend
 npm run dev
 
@@ -235,9 +248,9 @@ your-project/
          "env": {
            "ANTHROPIC_API_KEY": "your_anthropic_api_key",
            "PERPLEXITY_API_KEY": "your_perplexity_api_key",
-           "MODEL": "claude-3-7-sonnet-20250219",
+           "MODEL": "anthropic/claude-sonnet-4",
            "PERPLEXITY_MODEL": "sonar-pro",
-           "MAX_TOKENS": 64000,
+           "MAX_TOKENS": 120000,
            "TEMPERATURE": 0.2,
            "DEFAULT_SUBTASKS": 5,
            "DEFAULT_PRIORITY": "medium"
