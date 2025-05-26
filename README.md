@@ -493,6 +493,53 @@ After implementing task X, please create a brief technical note documenting:
 - Dependencies created for other tasks
 ```
 
+### 8. Task Management Prompt Recipes
+
+**Add new tasks:**
+```
+Let's add a new task. We should implement sorting of the timeline.
+Here are the requirements:
+- you should be able to sort the timeline by date
+- a dropdown should be available to select the sorting direction
+- the sorting should be persisted when a new page is loaded
+```
+
+**Change task direction:**
+```
+There should be a change in the image generation task.
+Can you update task 3 with this and set it back to pending?
+
+The image generation should use gpt-image-1 as the model.
+```
+
+**Remove tasks:**
+```
+Task 8 is not needed anymore. You can remove it.
+```
+
+### 9. Generate Perfect Cursor Rules
+
+**Pro tip for generating Cursor rules:**
+1. Head to Cursor Chat and type `/Generate Cursor Rules`
+2. Then `@MyFile.tsx` or whatever file you want to analyze
+3. Prompt: `I want to generate cursor rules for writing UI components. Please analyze the file and outline all the conventions found.`
+
+This creates spot-on Cursor rule `.mdx` files based on your actual code patterns!
+
+### 10. Essential Codebase Requirements
+
+**⚠️ NEVER start from an empty codebase!** Use a CLI, template, or tool like Shipixen.
+
+**Required foundation:**
+- **Type checks**: TypeScript ✅
+- **Linter**: ESLint ✅
+- **Formatter**: Prettier ✅
+- **UI components**: React/Shadcn UI ✅
+- **CSS library**: TailwindCSS ✅ (AI works better with it)
+- **State management**: Zustand ✅
+
+**This template includes all requirements above!**
+
 ## 🔧 Available Scripts
 
 ```bash
@@ -550,25 +597,168 @@ SENTRY_DSN=your_sentry_dsn
 - **Styling**: TailwindCSS with custom design system
 - **Tools**: ESLint, Prettier, Nodemon, Concurrently
 
-## 🔄 Recommended Workflow Summary
+## 🔄 Complete Workflow (Based on Olympic-Level Vibe Coding)
 
-1. **Requirements (10-15 min)** - Fill out `your-requirements.md` template
-2. **Functional Requirements** - Use AI to convert to structured requirements
-3. **PRD Creation** - Use AI to create comprehensive PRD
-4. **TaskMaster Setup** - Configure MCP and initialize tasks
-5. **Complexity Analysis** - Break down complex tasks
-6. **Implementation Loop** - Build iteratively with AI assistance
+### Step 1: Writing Requirements (10-15 minutes)
+Spend quality time writing detailed requirements. Include:
+- App name and tech stack
+- Core features and database needs
+- API integrations and design style
+- Things you DON'T want to build
+- Research comparable existing apps
 
-## ⚠️ Important Notes
+**Use this prompt with ChatGPT o3+ or Claude:**
+```
+I would like to create concise functional requirements for the following application:
 
-- **Never start from empty codebase** - Always use a template or CLI
-- **Use Agent mode** in Cursor with Claude 3.7 Sonnet
-- **Break down complex tasks** before implementation
-- **Test frequently** during the build process
-- **Commit tasks to git** to prevent loss
-- **Start fresh chats** for each new task implementation
-- **Provide context** with each task to guide AI implementation
-- **Break down files** larger than 500 lines for better AI handling
+[Your detailed requirements here]
+
+Output as markdown code.
+```
+
+### Step 2: Creating a PRD File
+Take your functional requirements and create a comprehensive PRD using this prompt:
+
+```
+You are an expert technical product manager specializing in feature development and creating comprehensive product requirements documents (PRDs). Your task is to generate a detailed and well-structured PRD based on the following instructions:
+
+<prd_instructions>
+{{YOUR_FUNCTIONAL_REQUIREMENTS}}
+</prd_instructions>
+
+Follow these steps to create the PRD:
+
+1. Begin with a brief overview explaining the project and the purpose of the document.
+2. Use sentence case for all headings except for the title of the document, which should be in title case.
+3. Organize your PRD into the following sections:
+   a. Introduction
+   b. Product Overview
+   c. Goals and Objectives
+   d. Target Audience
+   e. Features and Requirements
+   f. User Stories and Acceptance Criteria
+   g. Technical Requirements / Stack
+   h. Design and User Interface
+
+4. For each section, provide detailed and relevant information based on the PRD instructions. Ensure that you:
+   - Use clear and concise language
+   - Provide specific details and metrics where required
+   - Maintain consistency throughout the document
+   - Address all points mentioned in each section
+
+5. When creating user stories and acceptance criteria:
+   - List ALL necessary user stories including primary, alternative, and edge-case scenarios
+   - Assign a unique requirement ID (e.g., ST-101) to each user story for direct traceability
+   - Include at least one user story specifically for secure access or authentication if the application requires user identification
+   - Include at least one user story specifically for Database modelling if the application requires a database
+   - Ensure no potential user interaction is omitted
+   - Make sure each user story is testable
+
+6. Format your PRD professionally:
+   - Use consistent styles
+   - Include numbered sections and subsections
+   - Use bullet points and tables where appropriate to improve readability
+   - Ensure proper spacing and alignment throughout the document
+
+7. Review your PRD to ensure all aspects of the project are covered comprehensively and that there are no contradictions or ambiguities.
+
+Present your final PRD within <PRD> tags. Begin with the title of the document in title case, followed by each section with its corresponding content. Use appropriate subheadings within each section as needed.
+
+Remember to tailor the content to the specific project described in the PRD instructions, providing detailed and relevant information for each section based on the given context.
+```
+
+### Step 3: Setting Up TaskMaster AI via MCP
+
+#### 3.1 Install TaskMaster AI MCP Server
+Add this to your MCP settings in Cursor (Settings > MCP > Add new global MCP server):
+
+```json
+{
+  "mcpServers": {
+    "taskmaster-ai": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "--package=task-master-ai",
+        "task-master-ai"
+      ],
+      "env": {
+        "ANTHROPIC_API_KEY": "your_anthropic_api_key",
+        "PERPLEXITY_API_KEY": "your_perplexity_api_key",
+        "MODEL": "claude-3-7-sonnet-20250219",
+        "PERPLEXITY_MODEL": "sonar-pro",
+        "MAX_TOKENS": 64000,
+        "TEMPERATURE": 0.2,
+        "DEFAULT_SUBTASKS": 5,
+        "DEFAULT_PRIORITY": "medium"
+      }
+    }
+  }
+}
+```
+
+#### 3.2 Initialize TaskMaster AI
+1. Save your PRD as `scripts/prd.txt`
+2. In Cursor Chat (Agent mode + Claude 3.7 Sonnet):
+
+```
+I've initialized a new project with Claude Task Master. I have a PRD at scripts/prd.txt.
+Can you parse it and set up initial tasks?
+```
+
+3. Analyze complexity:
+```
+Can you analyze the complexity of our tasks to help me understand which ones need to be broken down further?
+```
+
+4. Break down complex tasks:
+```
+Please break down the identified tasks into subtasks.
+```
+
+### Step 4: Building the App (Implementation Loop)
+
+#### The Perfect Implementation Loop:
+1. **Start fresh chat** (important for context management)
+2. **Show tasks**: `Show tasks`
+3. **Get next task**: `What's the next task I should work on? Please consider dependencies and priorities.`
+4. **Implement**: `Implement task X and all of its subtasks.`
+5. **Test** the implementation
+6. **Repeat** with new chat
+
+#### Pro Implementation Tips:
+- **Always start new chats** for each task to avoid context pollution
+- **Provide extra context** for each task (attach images, API docs, UI preferences)
+- **Break down large files** (>500 lines) into smaller modules
+- **Treat bugs as tasks** - create new tasks for complex bugs instead of quick fixes
+
+## 🏆 Olympic-Level Vibe Coding Methodology
+
+This template implements the complete workflow from the viral blog post that revolutionized AI-assisted development. The methodology focuses on:
+
+1. **Detailed Requirements** (10-15 min investment upfront)
+2. **Comprehensive PRD Creation** (using proven prompts)
+3. **TaskMaster AI Integration** (via MCP for seamless workflow)
+4. **Iterative Implementation** (with fresh context for each task)
+
+**Key Insights:**
+- **Context Management**: Fresh chats prevent AI confusion
+- **Task Granularity**: Break down complex tasks into manageable pieces
+- **Structured Approach**: PRD → Tasks → Implementation → Testing
+- **Pro Tips**: File size limits, bug-as-task strategy, dependency management
+
+## ⚠️ Critical Success Factors
+
+- **✅ Never start from empty codebase** - Always use a template or CLI (this template provides everything!)
+- **✅ Use Agent mode** in Cursor with Claude 3.7 Sonnet
+- **✅ Break down complex tasks** before implementation (complexity analysis helps)
+- **✅ Test frequently** during the build process
+- **✅ Commit tasks to git** to prevent loss
+- **✅ Start fresh chats** for each new task implementation (most important rule!)
+- **✅ Provide context** with each task to guide AI implementation
+- **✅ Break down files** larger than 500 lines for better AI handling
+- **✅ Treat bugs as tasks** instead of applying quick fixes
+- **✅ Use TaskMaster AI** for proper task management and complexity analysis
 
 ## 🤝 Contributing
 

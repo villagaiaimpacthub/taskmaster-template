@@ -246,7 +246,7 @@ function App() {
         {/* Documentation Section */}
         <div className="mt-12 pt-8 border-t border-slate-700">
           <h2 className="text-xl font-semibold text-white mb-6">📚 Documentation & Templates</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {/* README */}
             <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
               <div className="flex items-start space-x-3">
@@ -296,11 +296,40 @@ function App() {
                   <p className="text-slate-300 text-sm mb-4">
                     Comprehensive Product Requirements Document template for detailed project planning.
                   </p>
+                  <div className="space-y-2">
+                    <button
+                      onClick={() => window.open('https://github.com/villagaiaimpacthub/taskmaster-template/blob/master/scripts/your-prd-template.md', '_blank')}
+                      className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 text-sm transition-colors"
+                    >
+                      <span>View Template</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => window.open('https://github.com/villagaiaimpacthub/taskmaster-template/blob/master/scripts/example-prd.md', '_blank')}
+                      className="flex items-center space-x-2 text-purple-300 hover:text-purple-200 text-sm transition-colors"
+                    >
+                      <span>View Example (ImgxAI)</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Troubleshooting Guide */}
+            <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+              <div className="flex items-start space-x-3">
+                <Activity className="w-6 h-6 text-red-400 mt-1" />
+                <div className="flex-1">
+                  <h3 className="font-medium text-white mb-2">Troubleshooting Guide</h3>
+                  <p className="text-slate-300 text-sm mb-4">
+                    Common issues and solutions for development problems and TaskMaster AI setup.
+                  </p>
                   <button
-                    onClick={() => window.open('https://github.com/villagaiaimpacthub/taskmaster-template/blob/master/scripts/your-prd-template.md', '_blank')}
-                    className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 text-sm transition-colors"
+                    onClick={() => window.open('https://github.com/villagaiaimpacthub/taskmaster-template/blob/master/scripts/troubleshooting.md', '_blank')}
+                    className="flex items-center space-x-2 text-red-400 hover:text-red-300 text-sm transition-colors"
                   >
-                    <span>View Template</span>
+                    <span>View Guide</span>
                     <ExternalLink className="w-4 h-4" />
                   </button>
                 </div>
