@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CheckCircle, Circle, Plus, Server, Activity } from 'lucide-react'
+import { CheckCircle, Circle, Plus, Server, Activity, FileText, BookOpen, ExternalLink } from 'lucide-react'
 
 interface Task {
   id: string
@@ -242,6 +242,114 @@ function App() {
             </p>
           </div>
         )}
+
+        {/* Documentation Section */}
+        <div className="mt-12 pt-8 border-t border-slate-700">
+          <h2 className="text-xl font-semibold text-white mb-6">📚 Documentation & Templates</h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {/* README */}
+            <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+              <div className="flex items-start space-x-3">
+                <BookOpen className="w-6 h-6 text-blue-400 mt-1" />
+                <div className="flex-1">
+                  <h3 className="font-medium text-white mb-2">README Guide</h3>
+                  <p className="text-slate-300 text-sm mb-4">
+                    Complete setup instructions, workflow guide, and TaskMaster AI usage tips.
+                  </p>
+                  <button
+                    onClick={() => window.open('https://github.com/villagaiaimpacthub/taskmaster-template/blob/master/README.md', '_blank')}
+                    className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 text-sm transition-colors"
+                  >
+                    <span>View README</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Requirements Template */}
+            <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+              <div className="flex items-start space-x-3">
+                <FileText className="w-6 h-6 text-green-400 mt-1" />
+                <div className="flex-1">
+                  <h3 className="font-medium text-white mb-2">Requirements Template</h3>
+                  <p className="text-slate-300 text-sm mb-4">
+                    Gather your initial project requirements before creating a detailed PRD.
+                  </p>
+                  <button
+                    onClick={() => window.open('https://github.com/villagaiaimpacthub/taskmaster-template/blob/master/scripts/your-requirements.md', '_blank')}
+                    className="flex items-center space-x-2 text-green-400 hover:text-green-300 text-sm transition-colors"
+                  >
+                    <span>View Template</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* PRD Template */}
+            <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+              <div className="flex items-start space-x-3">
+                <FileText className="w-6 h-6 text-purple-400 mt-1" />
+                <div className="flex-1">
+                  <h3 className="font-medium text-white mb-2">PRD Template</h3>
+                  <p className="text-slate-300 text-sm mb-4">
+                    Comprehensive Product Requirements Document template for detailed project planning.
+                  </p>
+                  <button
+                    onClick={() => window.open('https://github.com/villagaiaimpacthub/taskmaster-template/blob/master/scripts/your-prd-template.md', '_blank')}
+                    className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 text-sm transition-colors"
+                  >
+                    <span>View Template</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Start Guide */}
+          <div className="mt-8 bg-slate-800 rounded-lg border border-slate-700 p-6">
+            <h3 className="font-medium text-white mb-4 flex items-center space-x-2">
+              <Activity className="w-5 h-5 text-blue-400" />
+              <span>Quick Start Guide</span>
+            </h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <h4 className="text-sm font-medium text-slate-300 mb-2">1. Plan Your Project</h4>
+                <ul className="text-sm text-slate-400 space-y-1">
+                  <li>• Fill out the Requirements Template</li>
+                  <li>• Create a detailed PRD</li>
+                  <li>• Define success metrics</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-slate-300 mb-2">2. Generate Tasks</h4>
+                <ul className="text-sm text-slate-400 space-y-1">
+                  <li>• Use TaskMaster AI with your PRD</li>
+                  <li>• Break down complex features</li>
+                  <li>• Prioritize implementation order</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-slate-300 mb-2">3. Start Building</h4>
+                <ul className="text-sm text-slate-400 space-y-1">
+                  <li>• Implement tasks iteratively</li>
+                  <li>• Test frequently</li>
+                  <li>• Update tasks as needed</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-slate-300 mb-2">4. Deploy & Monitor</h4>
+                <ul className="text-sm text-slate-400 space-y-1">
+                  <li>• Set up CI/CD pipeline</li>
+                  <li>• Monitor performance</li>
+                  <li>• Gather user feedback</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   )
